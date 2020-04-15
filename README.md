@@ -3,7 +3,7 @@
 The widely employed ConvLSTM for modeling spatio-temporal data 
 can model only data in fixed-sized partitions. The standard convolutional filters
 cannot be applied on variable-sized partitions. The search for a model that works well with 
-irregular spaced partitions, we delve into Graph-based LSTM models.
+irregular spaced partitions made us delve into Graph-based LSTM models.
 A comparison of ConvLSTM and GraphLSTM reveals the competitive performance of GraphLSTM, 
 at a lower computational complexity, across three real-world large-scale taxi demand-supply data sets,
 with different performance metrics.
