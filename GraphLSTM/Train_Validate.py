@@ -58,7 +58,11 @@ def TrainGraphLSTM(train_dataloader, valid_dataloader, A, FFR, K, back_length = 
 
             Hidden_State, Cell_State = gclstm.loop(inputs)
             
-            loss_train = loss_MSE(Hidden_State, labels)
+            loss_1 = loss_MSE(Hidden_State, labels)
+            
+            loss_2 = loss_L1(Hidden_State, labels) 
+            
+            loss_train = loss_1 + loss_2 # to optimize for both L_1 and L_2 losses
             
             optimizer.zero_grad()
             
