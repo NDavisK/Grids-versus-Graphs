@@ -7,7 +7,7 @@ from Modules import FilterLinear
 import math
 import numpy as np
       
-class GraphConvolutionalLSTM(nn.Module):
+class GraphLSTM(nn.Module):
     
     def __init__(self, K, A, FFR, feature_size, Clamp_A=True):
         '''
@@ -18,10 +18,10 @@ class GraphConvolutionalLSTM(nn.Module):
             feature_size: the dimension of features
             Clamp_A: Boolean value, clamping all elements of A between 0. to 1.
         '''
-        super(GraphConvolutionalLSTM, self).__init__()
+        super(GraphLSTM, self).__init__()
         self.feature_size = feature_size
         self.hidden_size = feature_size
-        print("in GraphConvolutionalLSTM_init_")
+        print("in GraphLSTM_init_")
         self.K = K
         
         self.A_list = [] # Adjacency Matrix List
@@ -52,7 +52,7 @@ class GraphConvolutionalLSTM(nn.Module):
         self.Neighbor_weight.data.uniform_(-stdv, stdv)
         
     def forward(self, input, Hidden_State, Cell_State):
-        print("in GraphConvolutionalLSTM-forward")
+        print("in GraphLSTM-forward")
         x = input
 
         gc = self.gc_list[0](x)
@@ -72,13 +72,13 @@ class GraphConvolutionalLSTM(nn.Module):
         return Hidden_State, Cell_State, gc
     
     def Bi_torch(self, a):
-        print("in GraphConvolutionalLSTM-Bi_torch")
+        print("in GraphLSTM-Bi_torch")
         a[a < 0] = 0
         a[a > 0] = 1
         return a
     
     def loop(self, inputs):
-        print("in GraphConvolutionalLSTM-loop")
+        print("in GraphLSTM-loop")
         batch_size = inputs.size(0)
         time_step = inputs.size(1)
         Hidden_State, Cell_State = self.initHidden(batch_size)
@@ -87,7 +87,7 @@ class GraphConvolutionalLSTM(nn.Module):
         return Hidden_State, Cell_State
     
     def initHidden(self, batch_size):
-        print("in GraphConvolutionalLSTM-initHidden")
+        print("in GraphLSTM-initHidden")
         use_gpu = torch.cuda.is_available()
         if use_gpu:
             Hidden_State = Variable(torch.zeros(batch_size, self.hidden_size).cuda())
@@ -98,7 +98,7 @@ class GraphConvolutionalLSTM(nn.Module):
             Cell_State = Variable(torch.zeros(batch_size, self.hidden_size))
             return Hidden_State, Cell_State
     def reinitHidden(self, batch_size, Hidden_State_data, Cell_State_data):
-        print("in GraphConvolutionalLSTM-reinitHidden")
+        print("in GraphLSTM-reinitHidden")
         use_gpu = torch.cuda.is_available()
         if use_gpu:
             Hidden_State = Variable(Hidden_State_data.cuda(), requires_grad=True)
