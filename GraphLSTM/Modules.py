@@ -1,17 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jan  4 22:36:51 2018
-
-@author: zhiyong
-"""
-
 import torch.nn.functional as F
 import torch
 import torch.nn as nn
 from torch.autograd import Variable
 from torch.nn.parameter import Parameter
 import math
-
 
 
 class FilterLinear(nn.Module):
