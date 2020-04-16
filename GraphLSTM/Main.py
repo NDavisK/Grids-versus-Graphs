@@ -60,7 +60,7 @@ def PrepareDataset(taxi_demand_matrix, BATCH_SIZE = 24, seq_len = 10, pred_len =
     
     taxi_demand_sequences, taxi_demand_labels = np.asarray(taxi_demand_sequences), np.asarray(taxi_demand_labels)
     
-    # shuffle and split the dataset to training and testing datasets
+    #split the dataset to training and testing datasets
     sample_size = taxi_demand_sequences.shape[0]
     
     index = np.arange(sample_size, dtype = int)
