@@ -15,17 +15,25 @@ import pickle
 from pandas import read_csv
 
 def SMAPE(y_true, y_pred): 
+    
     y_true, y_pred = np.array(y_true), np.array(y_pred)
+    
     return np.mean(np.abs((y_true - y_pred) / (y_true + y_pred +1))) * 100
 
 def MASE(training_series, testing_series, prediction_series):
+    
     n = training_series.shape[0]
+    
     d = np.abs(  np.diff( training_series) ).sum()/(n-1)
+    
     errors = np.abs(testing_series - prediction_series )
+    
     return errors.mean()/d
 
 def RMSE(y_actual,y_predicted):
+    
     rms = sqrt(mean_squared_error(y_actual, y_predicted))
+    
     return rms
     
 
