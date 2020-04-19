@@ -10,3 +10,5 @@ with different performance metrics.
 
 For graph-based modeling, we borrow heavily from Cui, Zhiyong, et al. "Traffic graph convolutional recurrent neural network: 
 A deep learning framework for network-scale traffic learning and forecasting." and their code at https://github.com/zhiyongc/Graph_Convolutional_LSTM 
+
+For ConvLSTM and LSTM baselines, we use the standard Keras libraries.
